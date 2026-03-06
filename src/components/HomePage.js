@@ -168,8 +168,7 @@ export default function HomePage() {
           setSnackMessage(data.data.message);
           setOpenSnackBar(true);
           GetNotes(PageNumber, Data.Sortvalue);
-          setNotes("");
-          setScheduleDate(Date().toLocaleString());
+          setData({ ...Data, Notes: "", ScheduleDate: "" });
         })
         .catch((error) => {
           console.log("Error : ", error);
@@ -278,8 +277,8 @@ export default function HomePage() {
             variant="outlined"
             value={Data.Notes}
             onChange={(e) => {
-              setData({ ...Data, Notes: e.target.value }),
-                console.log("Notes : ", e.target.value);
+              setData({ ...Data, Notes: e.target.value });
+              console.log("Notes : ", e.target.value);
             }}
           />
           <div className="Date">
@@ -295,11 +294,11 @@ export default function HomePage() {
                 setData({
                   ...Data,
                   ScheduleDate: e.target.value,
-                }),
-                  console.log(
-                    "Schedule Date :",
-                    dayjs(e.target.value).format("DD/MM/YYYY")
-                  );
+                });
+                console.log(
+                  "Schedule Date :",
+                  dayjs(e.target.value).format("DD/MM/YYYY")
+                );
               }}
             />
             <div>Schedule Time</div>
@@ -311,8 +310,8 @@ export default function HomePage() {
               variant="outlined"
               value={Data.ScheduleTime}
               onChange={(e) => {
-                setData({ ...Data, ScheduleTime: e.target.value }),
-                  console.log("Schedule Time : ", e.target.value);
+                setData({ ...Data, ScheduleTime: e.target.value });
+                console.log("Schedule Time : ", e.target.value);
               }}
             />
           </div>
